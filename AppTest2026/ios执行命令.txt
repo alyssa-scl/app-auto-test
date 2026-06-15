@@ -1,0 +1,10 @@
+1.终端启动隧道，不要关哦  ios tunnel start
+2.设置 -> 开发者 -> 启动UI自动化勾上，（如果没有打开开发者：【设置】-【隐私与安全性】）
+3.终端指定设备启动webdriver agent：
+ios runwda --udid=00008101-001478AE2041401E --bundleid=com.bluetti.WebDriverAgentRunner.xctrunner --testrunnerbundleid=com.bluetti.WebDriverAgentRunner.xctrunner --xctestconfig=WebDriverAgentRunner.xctest
+4.tidevice relay 8100 8100
+5.连接链接使用http://127.0.0.1:8100
+6.使用浏览器访问http://127.0.0.1:8100会显示iOS version等信息
+
+
+

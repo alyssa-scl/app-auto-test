@@ -1,0 +1,1845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试报告</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <script src=" https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/echarts/5.1.2/echarts.min.js"></script>
+    <!--    页面样式-->
+    <style type="text/css">
+        /*标题样式*/
+        .title {
+            width: auto;
+            height: 60px;
+            text-align: center;
+            font: bolder 38px/60px "Microsoft YaHei UI";
+        }
+
+        /*汇总信息样式*/
+        .summary {
+            width: 90%;
+            position: absolute;
+            top: 120px;
+            margin-left: 5%;
+
+        }
+
+        .text-left {
+            font: bolder 20px/30px "Microsoft YaHei UI";
+        }
+
+        .left {
+            width: 50%;
+            float: left;
+
+        }
+
+        .right {
+            width: 50%;
+            float: right;
+
+        }
+
+        .desc {
+            float: left;
+            width: 100%;
+        }
+
+        .list-group-item span {
+            font: normal 16px/38px "Microsoft YaHei UI";
+            padding: 30px;
+
+        }
+
+        .list-group-item {
+            position: relative;
+            display: block;
+            padding: .4rem 1.25rem;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, .125);
+        }
+
+        /* 执行信息样式   */
+        .test_info {
+            width: 90%;
+            position: absolute;
+            top: 900px;
+            margin-left: 5%;
+
+            color: #28a745 !important;
+        }
+
+        .table td, th {
+            border: solid 2px rgba(9, 122, 51, 0.11) !important;
+            padding: 0;
+            line-height: 40px;
+            text-align: center;
+
+        }
+
+
+        select {
+            border: 0;
+            padding: 0;
+            margin: 0;
+            height: 2em;
+            width: 8em;
+            margin-left: 2em;
+        }
+
+        option {
+            text-align: center;
+            height: 36px;
+            font: none 18px/36px "Microsoft YaHei UI";
+            color: #28a745 !important;
+        }
+
+        .test_log {
+            background: rgba(163, 171, 189, 0.15);
+            width: 100%;
+            height: 50px;
+            border-top: none;
+            border-bottom: none;
+            display: none;
+            text-align: left;
+        }
+
+        .test_log td {
+            text-align: left;
+            height: 30px;
+            margin: 0;
+            padding-left: 3em;
+            padding-right:3em;
+            font: none 18px/24px "Microsoft YaHei UI";
+            color: #9e141a;
+        }
+
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+            line-height: 22px;
+            font-size: 14px
+        }
+
+        /*    测试图表显示*/
+        .char {
+            width: 90%;
+            position: absolute;
+            top: 450px;
+            margin-left: 5%;
+            color: #28a745 !important;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<!--报告标题-->
+<div class="title text-success">
+    <div class="shadow-lg p-3 mb-5 bg-white rounded">测试报告</div>
+</div>
+
+<!--汇总信息-->
+<div class="summary">
+    <p class="text-left text-success">测试结果汇总</p>
+    <div class="left">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">测试人员</button>
+                <span class="text-dark">测试员</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">开始时间</button>
+                <span class="text-dark">2026-04-03 08:48:28</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">执行时间</button>
+                <span class="text-dark">3171.74 S</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">用例总数</button>
+                <span class="text-dark">49</span>
+            </li>
+
+
+        </ul>
+    </div>
+    <div class="right">
+        <ul class="list-group">
+
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">成功用例</button>
+                <span class="text-success">48</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-warning">失败用例</button>
+                <span class="text-warning">0</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-danger">错误用例</button>
+                <span class="text-danger">1</span>
+            </li>
+            <li class="list-group-item">
+                <button type="button" class="btn btn-secondary">跳过用例</button>
+                <span class="text-secondary">0</span>
+            </li>
+        </ul>
+    </div>
+    <div class="desc">
+        <ul class="list-group">
+            <li class="list-group-item">
+                <button type="button" class="btn btn-success">描述信息</button>
+                <span class="text-secondary">XX项目测试生成的报告</span>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+
+<!--测试图表-->
+<div class="char">
+    <p class="text-left text-success">图表展示</p>
+    <div id="char2" style="width: 49%;height: 400px;float: left"></div>
+    <div id="char" style="width: 49%;height: 400px ;float: left"></div>
+</div>
+
+<!--详细信息-->
+<div class="test_info">
+
+    <p class="text-left text-success">详细信息</p>
+    <div class="table_data">
+
+        <table class="table">
+            <thead class="bg-success text-light">
+            <tr>
+                <th scope="col" style="width: 5%;padding: 0">编号</th>
+                <th scope="col" style="width: 20%;padding: 0">
+                    <span>测试类</span>
+                    <select id="testClass">
+                        <option>所有</option>
+                        
+                            <option>TestHomePage</option>
+                        
+                    </select>
+
+                </th>
+
+                <th scope="col" style="width: 15%;padding: 0">测试方法</th>
+                <th scope="col" style="width: 20%;padding: 0">用例描述</th>
+                <th scope="col" style="width: 15%;padding: 0">执行时间</th>
+                <th scope="col" style="width: 20%;padding: 0">
+
+                    <span>执行结果</span>
+                    <select id="testResult">
+                        <option>所有</option>
+                        <option class="text-success">成功</option>
+                        <option class="text-warning">失败</option>
+                        <option class="text-danger">错误</option>
+                        <option class="text-info">跳过</option>
+                    </select>
+
+                </th>
+                <th scope="col" style="width: 10%;padding: 0">详细信息</th>
+            </tr>
+            </thead>
+            <tbody>
+            
+                <tr>
+                    <td>1</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test01_manually_add_del_device</td>
+                    <td>验证手动添加设备，并删除-默认配置DLCSASUS网络</td>
+                    <td>53.2s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test01_manually_add_del_device (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test02_manually_addNotExist_device</td>
+                    <td>验证手动添加不存在的设备</td>
+                    <td>33.0s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test02_manually_addNotExist_device (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test03_manually_addBound_device</td>
+                    <td>验证手动添加其他账号绑定的设备</td>
+                    <td>40.0s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test03_manually_addBound_device (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test04_swipe_add_device</td>
+                    <td>验证拖动列表选定添加设备-默认配置DLCSASUS网络</td>
+                    <td>40.1s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>test04_swipe_add_device (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test05_BluetoothDirectConnect_not_pwd</td>
+                    <td>验证蓝牙直连功能-无密码</td>
+                    <td>74.4s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test05_BluetoothDirectConnect_not_pwd (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test06_BluetoothDirectConnect_input_pwd</td>
+                    <td>验证蓝牙直连功能-有密码</td>
+                    <td>84.6s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test06_BluetoothDirectConnect_input_pwd (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>7</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test07_DefaultConnectMethod_Bluetooth</td>
+                    <td>验证默认连接方式功能-蓝牙</td>
+                    <td>58.8s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test07_DefaultConnectMethod_Bluetooth (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>8</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test08_DefaultConnectMethod_Cloud</td>
+                    <td>验证默认连接方式功能-云端</td>
+                    <td>57.9s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test08_DefaultConnectMethod_Cloud (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>9</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test09_CarbonEmissionCoefficient_Set</td>
+                    <td>验证碳排量系数配置功能-设置</td>
+                    <td>40.9s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test09_CarbonEmissionCoefficient_Set (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>10</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test10_CarbonEmissionCoefficient_Reset</td>
+                    <td>验证碳排量系数配置功能-重置</td>
+                    <td>35.0s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test10_CarbonEmissionCoefficient_Reset (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>11</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test11_VisitorControlAuthorization_Close</td>
+                    <td>验证访客控制授权功能-关闭</td>
+                    <td>85.1s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test11_VisitorControlAuthorization_Close (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>12</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test12_VisitorControlAuthorization</td>
+                    <td>验证访客控制授权功能-打开</td>
+                    <td>97.9s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test12_VisitorControlAuthorization (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>13</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test13_DisasterWarning_Open</td>
+                    <td>验证灾害预警功能-打开</td>
+                    <td>40.7s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test13_DisasterWarning_Open (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>14</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test14_DisasterWarning_Close</td>
+                    <td>验证灾害预警功能-关闭</td>
+                    <td>38.5s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test14_DisasterWarning_Close (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>15</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test15_ChargingMode_standard</td>
+                    <td>验证充电模式设置功能-标准-mode=0</td>
+                    <td>38.0s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test15_ChargingMode_standard (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>16</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test16_ChargingMode_mute</td>
+                    <td>验证充电模式设置功能-静音-mode=1</td>
+                    <td>39.2s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test16_ChargingMode_mute (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>17</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test17_ChargingMode_fastcharging</td>
+                    <td>验证充电模式设置功能-快充-mode=2</td>
+                    <td>40.8s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test17_ChargingMode_fastcharging (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>18</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test18_ChargingMode_customize</td>
+                    <td>验证充电模式设置功能-自定义-mode=3</td>
+                    <td>49.9s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test18_ChargingMode_customize (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>19</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test19_StrongmanMode_Close</td>
+                    <td>验证大力士模式功能-关闭</td>
+                    <td>42.8s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+大力士模式关闭成功
+test19_StrongmanMode_Close (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>20</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test20_StrongmanMode_Open</td>
+                    <td>验证大力士模式功能-打开</td>
+                    <td>43.6s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test20_StrongmanMode_Open (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>21</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test21_ECOSetAC</td>
+                    <td>验证AC-ECO设置功能-设置关机时间1/2/3/4h-功率10-40W</td>
+                    <td>91.8s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test21_ECOSetAC (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>22</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test22_ECOSetDC</td>
+                    <td>验证DC-ECO设置功能-设置关机时间1/2/3/4h-功率5-20W</td>
+                    <td>90.8s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test22_ECOSetDC (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>23</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test23_ScreenSleepTime</td>
+                    <td>验证屏幕休眠时间功能-30秒/1分钟/5分钟/常亮</td>
+                    <td>57.8s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test23_ScreenSleepTime (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>24</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test24_ChildLockSwitch_enable1</td>
+                    <td>验证童锁开关-启用-等级一</td>
+                    <td>48.3s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test24_ChildLockSwitch_enable1 (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>25</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test25_ChildLockSwitch_enable2</td>
+                    <td>验证童锁开关-启用-等级二</td>
+                    <td>49.1s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test25_ChildLockSwitch_enable2 (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>26</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test26_ChildLockSwitch_disenable</td>
+                    <td>验证童锁开关-停用</td>
+                    <td>45.5s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test26_ChildLockSwitch_disenable (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>27</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test27_WorkingMode_standard</td>
+                    <td>验证工作模式功能-标准UPS-备用电源</td>
+                    <td>38.9s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test27_WorkingMode_standard (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>28</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test28_WorkingMode_PVPriority</td>
+                    <td>验证工作模式功能-PV优先UPS-自发自用</td>
+                    <td>48.4s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test28_WorkingMode_PVPriority (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>29</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test29_WorkingMode_TimeControlled</td>
+                    <td>验证工作模式功能-时间控制UPS-定时充放电-时间设置不太完善后期再维护</td>
+                    <td>52.4s</td>
+                    
+                        <td class="text-danger">错误</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\site-packages\poco\proxy.py", line 26, in wrapped
+    proxy.wait_for_appearance(timeout=proxy.poco._pre_action_wait_for_appearance)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\site-packages\poco\proxy.py", line 679, in wait_for_appearance
+    raise PocoTargetTimeout('appearance', self)
+</pre>
+                        
+
+                            <pre>poco.exceptions.PocoTargetTimeout: Waiting timeout for appearance of "UIObjectProxy of "text=时间设置""
+</pre>
+                        
+
+                            <pre>
+During handling of the above exception, another exception occurred:
+
+</pre>
+                        
+
+                            <pre>Traceback (most recent call last):
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\unittest\case.py", line 59, in testPartExecutor
+    yield
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\unittest\case.py", line 593, in run
+    self._callTestMethod(testMethod)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\unittest\case.py", line 550, in _callTestMethod
+    method()
+</pre>
+                        
+
+                            <pre>  File "D:\Projects\AirtestProject\APPAutoTest\AppTest2026\android.air\android.py", line 1072, in test29_WorkingMode_TimeControlled
+    WorkingMode_config(3,[31,70],[{"充电":"15:10-18:40"}])
+</pre>
+                        
+
+                            <pre>  File "D:\Projects\AirtestProject\APPAutoTest\AppTest2026\android.air\android.py", line 503, in WorkingMode_config
+    poco(text="时间设置").click()
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\site-packages\poco\proxy.py", line 29, in wrapped
+    raise e
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\site-packages\poco\proxy.py", line 23, in wrapped
+    return func(proxy, *args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\site-packages\poco\proxy.py", line 332, in click
+    pos_in_percentage = self.get_position(focus)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\site-packages\poco\proxy.py", line 72, in wrapped
+    return func(proxy, *args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\site-packages\poco\proxy.py", line 613, in get_position
+    x, y = map(float, self.attr('pos'))
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\site-packages\poco\proxy.py", line 39, in wrapped
+    return func(self, *args, **kwargs)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\site-packages\poco\proxy.py", line 734, in attr
+    nodes = self._do_query(multiple=False)
+</pre>
+                        
+
+                            <pre>  File "D:\Program Files\Python39\lib\site-packages\poco\proxy.py", line 888, in _do_query
+    raise PocoNoSuchNodeException(self)
+</pre>
+                        
+
+                            <pre>poco.exceptions.PocoNoSuchNodeException: Cannot find any visible node by query UIObjectProxy of "text=时间设置"
+</pre>
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+data: (31, 70)
+test29_WorkingMode_TimeControlled (__main__.TestHomePage)执行——>【错误Error】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>30</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test30_WorkingMode_Customed</td>
+                    <td>验证工作模式功能-自定义UPS-自定义-时间设置不太完善后期再维护</td>
+                    <td>89.8s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+data: (21, 50)
+test30_WorkingMode_Customed (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>31</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test31_SingleWiFiConfig</td>
+                    <td>验证单个WiFi网络配置功能-设备不支持多WiFi-默认使用DLCSASUS</td>
+                    <td>40.6s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test31_SingleWiFiConfig (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>32</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test32_TimerSwitch_DC</td>
+                    <td>验证定时开关-DC</td>
+                    <td>60.8s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test32_TimerSwitch_DC (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>33</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test33_TimerSwitch_AC</td>
+                    <td>验证定时开关-AC</td>
+                    <td>61.8s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test33_TimerSwitch_AC (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>34</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test34_DCInputSource_PV</td>
+                    <td>验证高级设置-直流输入源-PV</td>
+                    <td>61.3s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test34_DCInputSource_PV (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>35</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test35_DCInputSource_Other</td>
+                    <td>验证高级设置-直流输入源-其他</td>
+                    <td>53.5s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test35_DCInputSource_Other (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>36</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test36_ACOutputFrequency_50Hz</td>
+                    <td>验证高级设置-交流电输出频率-50Hz</td>
+                    <td>52.0s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test36_ACOutputFrequency_50Hz (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>37</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test37_ACOutputFrequency_60Hz</td>
+                    <td>验证高级设置-交流电输出频率-60Hz</td>
+                    <td>51.9s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test37_ACOutputFrequency_60Hz (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>38</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test38_SystemSwitchMemory_enable</td>
+                    <td>验证高级设置-系统开关机记忆-启用</td>
+                    <td>60.8s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test38_SystemSwitchMemory_enable (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>39</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test39_SystemSwitchMemory_disenable</td>
+                    <td>验证高级设置-系统开关机记忆-停用</td>
+                    <td>49.1s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test39_SystemSwitchMemory_disenable (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>40</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test40_MaxInputPowerGrid</td>
+                    <td>验证高级设置-电网最大输入电流</td>
+                    <td>63.8s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test40_MaxInputPowerGrid (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>41</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test41_SleepModeSet_enable</td>
+                    <td>验证高级设置-休眠模式-启用</td>
+                    <td>81.4s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test41_SleepModeSet_enable (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>42</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test42_SleepModeSet_disenable</td>
+                    <td>验证高级设置-休眠模式-停用</td>
+                    <td>47.6s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test42_SleepModeSet_disenable (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>43</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test43_MaxChargingLimitSet</td>
+                    <td>验证高级设置-充电上限设置</td>
+                    <td>49.0s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test43_MaxChargingLimitSet (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>44</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test44_FirmwareUpdate_Cloud_IOT</td>
+                    <td>验证固件升级云端-IOT</td>
+                    <td>1.31e+02s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test44_FirmwareUpdate_Cloud_IOT (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>45</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test45_FirmwareUpdate_Bluetooth_IOT</td>
+                    <td>验证固件升级蓝牙-IOT</td>
+                    <td>2.71e+02s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test45_FirmwareUpdate_Bluetooth_IOT (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>46</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test46_FirmwareUpdate_Cloud_System</td>
+                    <td>验证固件升级云端-系统升级</td>
+                    <td>1.45e+02s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test46_FirmwareUpdate_Cloud_System (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>47</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test47_FirmwareUpdate_Bluetooth_System</td>
+                    <td>验证固件升级蓝牙-系统升级</td>
+                    <td>1.58e+02s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test47_FirmwareUpdate_Bluetooth_System (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>48</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test48_AboutDevice</td>
+                    <td>验证关于设备页</td>
+                    <td>45.6s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test48_AboutDevice (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+                <tr>
+                    <td>49</td>
+                    <td class="TestHomePage">TestHomePage</td>
+                    <td>test49_ModifyDeviceName</td>
+                    <td>验证修改设备名称</td>
+                    <td>40.8s</td>
+                    
+                        <td class="text-success">成功</td>
+                    
+                    <td>
+                        <button type="button" class="btn btn-success btn_info">查看详情</button>
+                    </td>
+                </tr>
+
+                <tr class="test_log">
+
+                    <td colspan="7" class="small text-muted" style=" word-wrap:break-word; word-break:break-all">
+                        
+
+                            <pre>找到设备 'AORA300' 在索引 0，返回UIObjectProxy of "net.poweroak.bluetticloud.debug:id/rv_device_list/android.view.ViewGroup[0]"
+test49_ModifyDeviceName (__main__.TestHomePage)执行——>【通过】
+</pre>
+                        
+                        
+                    </td>
+                </tr>
+            
+
+            </tbody>
+        </table>
+    </div>
+
+    <div style="height: 200px"></div>
+</div>
+
+
+<script>
+    var tbodyTr = $('tbody tr');
+    var testResult = $("#testResult");
+    var testClass = $("#testClass");
+    <!--    用例执行详细信息显示切换-->
+    $(".btn_info").click(function () {
+        $(this).parent().parent().next().toggle();
+
+    });
+    // 当选择用例类之后触发
+    testClass.change(function () {
+        var cls = $(this).val();
+        var res = testResult.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+    testResult.change(function () {
+        var res = $(this).val();
+        var cls = testClass.val();
+        elementDisplay(cls, res);
+        sort()
+    });
+
+    function elementDisplay(cls, res) {
+        // 用例数据的显示
+        if (cls === "所有") {
+            if (res === "所有") {
+                tbodyTr.has('button').show();
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-success').show()
+
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-warning').show()
+
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-danger').show()
+
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.text-info').show()
+            }
+        } else {
+            if (res === "所有") {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').show()
+            } else if (res === '成功') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-success').show()
+            } else if (res === '失败') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-warning').show()
+            } else if (res === '错误') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-danger').show()
+            } else if (res === '跳过') {
+                tbodyTr.hide();
+                tbodyTr.has('button').has('.' + cls + '').has('.text-info').show()
+            }
+        }
+    }
+
+    function sort() {
+        //重新排列显示序号
+        // 选择所有可以见的tr
+        var visibleTr = tbodyTr.filter(":visible");
+
+        visibleTr.each(function (index, element) {
+            element.firstElementChild.innerHTML = index + 1;
+
+        })
+
+    }
+
+
+</script>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('char'));
+    var myChart2 = echarts.init(document.getElementById('char2'));
+    // 指定图表的配置项和数据
+    option = {
+        color: ['#00a10a', '#ddb518', 'rgba(204,46,41,0.73)', '#85898c'],
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            orient: 'vertical',
+            left: 10,
+            data: ['通过', '失败', '错误', '跳过']
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'pie',
+                radius: ['50%', '70%'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    {value: 48, name: '通过'},
+                    {value: 0, name: '失败'},
+                    {value: 1, name: '错误'},
+                    {value: 0, name: '跳过'}
+                ]
+            }
+        ]
+    };
+    option2 = {
+        tooltip: {
+            formatter: '{a} <br/>{b} : {c}%'
+        },
+        toolbox: {
+            feature: {
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        series: [
+            {
+                name: '测试结果',
+                type: 'gauge',
+                detail: {formatter: '97.96%'},
+                data: [{value: '97.96', name: '用例通过率'}],
+                axisLine: {
+                    lineStyle: {
+                        color: [
+                            [0.2, '#c20000'],
+                            [0.8, '#ddb518'],
+                            [1, '#00a10a']]
+                    }
+                }
+            }
+        ]
+    };
+
+
+    myChart2.setOption(option2);
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+
+</body>
+</html>
