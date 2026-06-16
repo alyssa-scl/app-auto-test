@@ -1,5 +1,6 @@
 补充说明：针对没有MAC电脑无法通过XCode去生成WDA.ipa文件，可用以下方式进行：
 在GitHub上搜索 WebDriverAgentRunner.ipa 找到对应的版本驱动
+
 📱 第一阶段：使用爱思助手进行签名
 这个阶段的目标是把你手里的 WDA.ipa 文件，用你的 Apple ID 签上名。
 
